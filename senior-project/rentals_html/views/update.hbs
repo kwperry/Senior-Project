@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Admins Update</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
@@ -413,61 +413,32 @@
             <a href="{{url_for('home')}}" class="w3-bar-item w3-button w3-orange w3-mobile"><i
                     class="fa fa-car w3-margin-right"></i>NEIT Car
                 Rentals</a>
-            <a href="#" class="w3-bar-item w3-button w3-mobile">Reservations</a>
+            <a href="#" class="w3-bar-item w3-button w3-mobile">Update</a>
             <a href="{{url_for('login')}}" class="w3-bar-item w3-button w3-mobile">Login</a>
             <a href="{{url_for('register')}}" class="w3-bar-item w3-button w3-mobile">Signup</a>
             <a href="#" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Contact Us</a>
         </nav>
     </div>
-    <header class="w3-display-container w3-content" style="max-width:1500px;">
-        <img class="w3-image" src="/Users/liv161/Library/Mobile Documents/com~apple~CloudDocs/Documents/senior-project/rentals_html/img/carline.jpeg" alt="The Road" style="min-width:1000px" width="1500"
-            height="800">
-        <div class="w3-display-left w3-padding w3-col l6 m8">
-            <div class="w3-container w3-orange">
-                <h2><i class="fa fa-car w3-margin-right"></i>NEIT Car Rentals</h2>
-            </div>
-            <div class="w3-container w3-white w3-padding-16">
-                <form method="POST" action="/inventory" target="_blank">
-                    <div style="float: right;">Welcome {{name}}</div>
-                    <div class="w3-margin-bottom">
-                        <label for="location">Choose a location:</label>
-                        <br>
-                        <select class="w3-select w3-border" name="location" id="location" required>
-                            <option value="" disabled selected>Select</option>
-                            <option value="NEIT - East Greenwich">NEIT - East Greenwich</option>
-                            <option value="NEIT - Post Road">NEIT - Post Road</option>
-                            <option value="NEIT - Jefferson Blvd">NEIT - Jefferson Blvd</option>
-                        </select>
+    {{msg}}
+    <div class="login-clean" style="margin-top: -75px;">
+        <div class="register-photo">
+            <div class="form-container">
+                <form method="post" action="/check">
+                    <h2 class="sr-only">Update Form</h2>
+                    <div class="illustration"><i class="icon ion-ios-albums" style="color:#aedc8a;"></i></div>
+                    <div class="form-group"><input class="form-control" type="text" name="Make" placeholder="Make" required=true></div>
+                    <div class="form-group"><input class="form-control" type="text" name="Model" placeholder="Model" required=true></div>                                        
+                    <div class="form-group"><input class="form-control" type="text" name="Make" placeholder="Make" required=true></div>
+                    <div class="form-group"><input class="form-control" type="text" name="Color" placeholder="Color" required=true></div>
+                    <div class="form-group"><input class="form-control" type="number" name="Number of Door" placeholder="Doors" required=true></div>
+                    <div class="form-group"><input class="form-control" type="number" name="Miles Per Gallon" placeholder="Miles Per Gallon" required=true></div>
+                    <div class="form-group">
+                    <input type="submit" name="submit" value="Update" class="btn btn-primary btn-block" style="background-color:#aedc8a;color:rgb(40,140,38);">
                     </div>
-                    <div class="w3-row-padding" style="margin:0 -16px;">
-                        <div class="w3-quarter w3-margin-bottom">
-                            <label>Pickup Date:</label>
-                            <br>
-                            <input type="date" name="pickup-date" min="2021-01-01" max="2021-12-31" required>
-                        </div>
-                        <div class="w3-quarter w3-margin-bottom">
-                            <label>Pickup Time:</label>
-                            <br>
-                            <input type="time" name="pickup-time" value="12:00" required>
-                        </div>
-                        <div class="w3-quarter">
-                            <label>Return Date:</label>
-                            <br>
-                            <input type="date" name="dropoff-date" min="2021-01-01" max="2021-12-31" required>
-                        </div>
-                        <div class="w3-quarter w3-margin-bottom">
-                            <label>Return Time:</label>
-                            <br>
-                            <input type="time" name="dropoff-time" value="12:00" required>
-                        </div>
-                    </div>
-
-                    <button class="w3-button w3-dark-grey" type="submit"><i class="fa fa-search w3-margin-center"></i>
-                        Search availability</button>
                 </form>
             </div>
         </div>
-    </header>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>

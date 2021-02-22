@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -330,7 +327,7 @@
 .register-photo .image-holder {
     display: table-cell;
     width: auto;
-    background: url('/Users/liv161/Library/Mobile Documents/com~apple~CloudDocs/Documents/senior-project/rentals_html/img/carline.jpeg');
+    background: url(../../static/img/cars.jpg);
     background-size: cover
 }
 
@@ -403,6 +400,36 @@
     opacity: .9;
     text-decoration: none
 }
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
     </style>
 </head>
 
@@ -410,36 +437,24 @@
     <div>
         <!-- Navigation Bar -->
         <nav class="w3-bar w3-white w3-large">
-            <a href="{{url_for('home')}}" class="w3-bar-item w3-button w3-orange w3-mobile"><i
+            <a href="home" class="w3-bar-item w3-button w3-orange w3-mobile"><i
                     class="fa fa-car w3-margin-right"></i>NEIT Car
                 Rentals</a>
-            <a href="#" class="w3-bar-item w3-button w3-mobile">Reservations</a>
-            <a href="{{url_for('login')}}" class="w3-bar-item w3-button w3-mobile">Login</a>
-            <a href="{{url_for('register')}}" class="w3-bar-item w3-button w3-mobile">Signup</a>
+            <a href="reservation" class="w3-bar-item w3-button w3-mobile">Reservations</a>
+            <a href="login" class="w3-bar-item w3-button w3-mobile">Login</a>
+            <a href="register" class="w3-bar-item w3-button w3-mobile">Signup</a>
             <a href="#" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Contact Us</a>
         </nav>
     </div>
-    {{msg}}
     <div class="login-clean" style="margin-top: -75px;">
-        <div class="register-photo">
             <div class="form-container">
-                <form method="post" action="/check">
-                    <h2 class="sr-only">Login Form</h2>
-                    <div class="illustration"><i class="icon ion-ios-navigate" style="color:#aedc8a;"></i></div>
-                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email" required=true></div>
-                    <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" required=true></div>
-                    <div class="form-group">
-                    <input type="submit" name="submit" value="Login" class="btn btn-primary btn-block" style="background-color:#aedc8a;color:rgb(40,140,38);">
-                    </div>
-                    <a href="#" class="forgot">Forgot your email or password?</a>
+                <form class="example" action="/action_page.php">
+                    <input type="text" placeholder="Search.." name="search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
-                <div class="image-holder"></div>
             </div>
-        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
 </body>
-
-</html>

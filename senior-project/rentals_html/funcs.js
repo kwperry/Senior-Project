@@ -9,6 +9,8 @@ module.exports = {
         var resEnd = new Date(reservation.dropoff);
 
         //Compare start dates
+        // if((startDate < resStart || startDate > resEnd) && 
+        // (endDate < resStart || endDate > resEnd))
         if(startDate < resStart && endDate < resStart)
         {   
             isAvailable = true;

@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admins Create</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <title>Confirmation</title>
-</head>
-<style>
-    .login-clean form .btn-primary:active,
+    <!-- <link rel="stylesheet" href="static/css/styles.min.css"> -->
+    <style>
+        .login-clean form .btn-primary:active,
 .register-photo form .btn-primary:active {
     transform: translateY(1px)
 }
@@ -403,7 +403,9 @@
     opacity: .9;
     text-decoration: none
 }
-</style>
+    </style>
+</head>
+
 <body>
     <div>
         <!-- Navigation Bar -->
@@ -411,27 +413,29 @@
             <a href="{{url_for('home')}}" class="w3-bar-item w3-button w3-orange w3-mobile"><i
                     class="fa fa-car w3-margin-right"></i>NEIT Car
                 Rentals</a>
-            <a href="#" class="w3-bar-item w3-button w3-mobile">Reservations</a>
-            <a href="#" class="w3-bar-item w3-button w3-mobile">Login</a>
-            <a href="#" class="w3-bar-item w3-button w3-mobile">Signup</a>
+            <a href="#" class="w3-bar-item w3-button w3-mobile">Create</a>
+            <a href="{{url_for('login')}}" class="w3-bar-item w3-button w3-mobile">Login</a>
+            <a href="{{url_for('register')}}" class="w3-bar-item w3-button w3-mobile">Signup</a>
             <a href="#" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Contact Us</a>
         </nav>
     </div>
-    <div class="form-container w3-margin-top w3-padding">
-        <div class="w3-margin-top w3-padding">
-            <div style="width: auto;height: 400px;">
-                <div style="text-align: center;" >
-                    <h1 class="w3-margin-top">Thank You</h1>
-                    <br>
-                    <i class='fas fa-check-circle' style='font-size:72px;color:green'></i>
-                    <br>
-                    <h2 class="w3-margin-top">Confirmation # 123456789</h2>
-                    <br>
-                    <a class="w3-button w3-blue w3-round-large" href="">Return Home</a>
-                    <br>
-                    <br>
-                    <a class="w3-button w3-red w3-round-large" href="">Cancel this rental</a>
-                </div>
+    {{msg}}
+    <div class="login-clean" style="margin-top: -75px;">
+        <div class="register-photo">
+            <div class="form-container">
+                <form method="post" action="/check">
+                    <h2 class="sr-only">Create Form</h2>
+                    <div class="illustration"><i class="icon ion-ios-albums" style="color:#aedc8a;"></i></div>
+                    <div class="form-group"><input class="form-control" type="text" name="Make" placeholder="Make" required=true></div>
+                    <div class="form-group"><input class="form-control" type="text" name="Model" placeholder="Model" required=true></div>                                        
+                    <div class="form-group"><input class="form-control" type="text" name="Make" placeholder="Make" required=true></div>
+                    <div class="form-group"><input class="form-control" type="text" name="Color" placeholder="Color" required=true></div>
+                    <div class="form-group"><input class="form-control" type="number" name="Number of Door" placeholder="Doors" required=true></div>
+                    <div class="form-group"><input class="form-control" type="number" name="Miles Per Gallon" placeholder="Miles Per Gallon" required=true></div>
+                    <div class="form-group">
+                    <input type="submit" name="submit" value="Create" class="btn btn-primary btn-block" style="background-color:#aedc8a;color:rgb(40,140,38);">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -439,4 +443,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
 </body>
+
 </html>

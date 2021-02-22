@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html>
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Inventory</title>
+  <title>Rentals Inventory</title>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
@@ -414,12 +412,12 @@ text-decoration: none
   <div>
     <!-- Navigation Bar -->
     <nav class="w3-bar w3-white w3-large">
-      <a href="{{url_for('home')}}" class="w3-bar-item w3-button w3-orange w3-mobile"><i
+      <a href="#" class="w3-bar-item w3-button w3-orange w3-mobile"><i
           class="fa fa-car w3-margin-right"></i>NEIT Car
         Rentals</a>
       <a href="#" class="w3-bar-item w3-button w3-mobile">Reservations</a>
-      <a href="{{url_for('login')}}" class="w3-bar-item w3-button w3-mobile">Login</a>
-      <a href="{{url_for('register')}}" class="w3-bar-item w3-button w3-mobile">Signup</a>
+      <a href="#" class="w3-bar-item w3-button w3-mobile">Login</a>
+      <a href="#" class="w3-bar-item w3-button w3-mobile">Signup</a>
       <a href="#" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Contact Us</a>
     </nav>
   </div>
@@ -438,14 +436,14 @@ text-decoration: none
       </select>
     </div>
     <!--Script for top panel-->
-    <script>
+    {{!-- <script>
       window.onload = toggleSelect(); // to disable select on load if needed
 
       function toggleSelect() {
         var isChecked = document.getElementById("location-check").checked;
         document.getElementById("selectLoc").disabled = isChecked;
       }
-    </script>
+    </script> --}}
   </div>
   <!--This is the left panel, sort by car type-->
   <div>
@@ -503,7 +501,8 @@ text-decoration: none
   <div class="w3-twothird">
     <!--DUMMY DATA --FOR DESIGN PURPOSES-->
     <script>
-      var data = [{
+      {{!-- var data = {{ data }}; --}}
+      {{!-- [{
         "id":0,
         "manufacturer": "Porsche",
         "model": "911",
@@ -514,7 +513,7 @@ text-decoration: none
         "passengers": 4,
         "doors": 2,
         "storage": 1,
-        "img": "static/img/2004_Porsche_911_Carrera_type_997.jpg"
+        "img": "/Users/liv161/Documents/Senior-Project/senior-project/rentals_html/img/2004_Porsche_911_Carrera_type_997.jpg"
       }, {
         "id":1,
         "manufacturer": "Nissan",
@@ -526,7 +525,7 @@ text-decoration: none
         "passengers": 4,
         "doors": 2,
         "storage": 1,
-        "img": "static/img/Nissan_GT-R.jpg"
+        "img": "/Users/liv161/Documents/Senior-Project/senior-project/rentals_html/img/Nissan_GT-R.jpg"
       }, {
         "id":2,
         "manufacturer": "BMW",
@@ -538,7 +537,7 @@ text-decoration: none
         "passengers": 5,
         "doors": 4,
         "storage": 2,
-        "img": "static/img/BMW_M3_E92.jpg"
+        "img": "/Users/liv161/Documents/Senior-Project/senior-project/rentals_html/img/BMW_M3_E92.jpg"
       }, {
         "id":3,
         "manufacturer": "Audi",
@@ -550,7 +549,7 @@ text-decoration: none
         "passengers": 5,
         "doors": 4,
         "storage": 2,
-        "img": "static/img/Audi_S5.jpg"
+        "img": "/Users/liv161/Documents/Senior-Project/senior-project/rentals_html/img/Audi_S5.jpg"
       }, {
         "id":4,
         "manufacturer": "Audi",
@@ -562,10 +561,11 @@ text-decoration: none
         "passengers": 2,
         "doors": 2,
         "storage": 1,
-        "img": "static/img/Audi_TT_Coupe.jpg"
-      }];
+        "img": "/Users/liv161/Documents/Senior-Project/senior-project/rentals_html/img/Audi_TT_Coupe.jpg"
+      }]; --}}
 
-      myInventory(data);
+      console.log('poop');
+      {{!-- myInventory({{ cars }}); --}}
 
       function myInventory(myObject) {
         var out = "";
@@ -589,7 +589,7 @@ text-decoration: none
                   "<br>" +
                   "<i class='material-icons'>person</i>&nbsp" + myObject[i].passengers + "&nbsp" +
                   "<i class='fa fa-suitcase' style='font-size:24px'></i>&nbsp" + myObject[i].storage + "&nbsp" +
-                  "<img style='width:30px;height:30px;margin-top:-20px;' src='static/img/door.png' alt='door icon'>&nbsp" + myObject[i].doors + "&nbsp" +
+                  "<img style='width:30px;height:30px;margin-top:-20px;' src='/Users/liv161/Documents/Senior-Project/senior-project/rentals_html/img/door.png' alt='door icon'>&nbsp" + myObject[i].doors + "&nbsp" +
                 "</div>" +
                 "<div class='w3-quarter w3-margin-top'>" +
                   "<h4>Information</h4>" +
@@ -615,8 +615,9 @@ text-decoration: none
         }
       }
     </script>
+        <div>
+          {{ cars }}
+        </div>
   </div>
   </div>
 </body>
-
-</html>

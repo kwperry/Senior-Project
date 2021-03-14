@@ -10,6 +10,8 @@ const hbs = require('hbs');
 
 var doc = require('aws-sdk');
 var dynamodb = new doc.DynamoDB();
+const port = process.env.PORT || 3000
+
 
 AWS.config.loadFromPath('./config.json');
 //Set AWS Region
@@ -364,7 +366,7 @@ app.post('/loginCheck', (req,res) => {
     }).catch(console.error);
 });
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log('Listening on port 3000!');
     console.log('http://localhost:3000/home');
 });

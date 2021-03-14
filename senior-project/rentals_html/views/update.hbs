@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
-    <!-- <link rel="stylesheet" href="static/css/styles.min.css"> -->
     <style>
         .login-clean form .btn-primary:active,
 .register-photo form .btn-primary:active {
@@ -410,26 +409,33 @@
     <div>
         <!-- Navigation Bar -->
         <nav class="w3-bar w3-white w3-large">
-            <a href="{{url_for('home')}}" class="w3-bar-item w3-button w3-orange w3-mobile"><i
+            <a href="home" class="w3-bar-item w3-button w3-orange w3-mobile"><i
                     class="fa fa-car w3-margin-right"></i>NEIT Car
                 Rentals</a>
-            <a href="#" class="w3-bar-item w3-button w3-mobile">Update</a>
-            <a href="{{url_for('login')}}" class="w3-bar-item w3-button w3-mobile">Login</a>
-            <a href="{{url_for('register')}}" class="w3-bar-item w3-button w3-mobile">Signup</a>
+            <a href="create" class="w3-bar-item w3-button w3-mobile">Create</a>
+            <a href="login" class="w3-bar-item w3-button w3-mobile">Login</a>
+            <a href="register" class="w3-bar-item w3-button w3-mobile">Signup</a>
             <a href="#" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Contact Us</a>
         </nav>
     </div>
-    {{msg}}
+
     <div class="login-clean" style="margin-top: -75px;">
         <div class="register-photo">
             <div class="form-container">
                 <form method="post" action="/check">
                     <h2 class="sr-only">Update Form</h2>
-                    <div class="illustration"><i class="icon ion-ios-albums" style="color:#aedc8a;"></i></div>
+                    <div class="illustration">
+                    <div class="image-upload">
+                    <label>
+                    <i class="icon ion-ios-albums" style="color:#aedc8a;"></i>
+                    <input type="file" name="myfile" style="display:none">
+                    </label>
+                    </div>
+                    </div>
                     <div class="form-group"><input class="form-control" type="text" name="Make" placeholder="Make" required=true></div>
-                    <div class="form-group"><input class="form-control" type="text" name="Model" placeholder="Model" required=true></div>                                        
-                    <div class="form-group"><input class="form-control" type="text" name="Make" placeholder="Make" required=true></div>
-                    <div class="form-group"><input class="form-control" type="text" name="Color" placeholder="Color" required=true></div>
+                    <div class="form-group"><input class="form-control" type="text" name="Model" placeholder="Model" required=true></div>      
+                    <div class="form-group"><input class="form-control" type="number" name="Passenger" placeholder="Number of Passengers" required=true></div>
+                    <div class="form-group"><input class="form-control" type="number" name="Storage" placeholder="Number of Travel Bags" required=true></div>              
                     <div class="form-group"><input class="form-control" type="number" name="Number of Door" placeholder="Doors" required=true></div>
                     <div class="form-group"><input class="form-control" type="number" name="Miles Per Gallon" placeholder="Miles Per Gallon" required=true></div>
                     <div class="form-group">

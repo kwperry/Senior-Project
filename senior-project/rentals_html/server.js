@@ -6,25 +6,74 @@ const fileUpload = require('express-fileupload');
 const fetch = require('node-fetch');
 var funcs = require('./funcs');
 const { dateChecker } = require('./funcs');
+const hbs = require('hbs');
 
+var doc = require('aws-sdk');
+var dynamodb = new doc.DynamoDB();
+
+AWS.config.loadFromPath('./config.json');
 //Set AWS Region
-AWS.config.update({region: 'us-east-1'});
+//AWS.config.update({region: 'us-east-1'});
 
 const app = express();
 
-app.use(express.urlencoded({ extended: false }));
+//app.use(express.urlencoded({ extended: false }));
 app.use(fileUpload());
 app.use('/static', express.static('public'));
+app.use(express.static('/views/images')); 
+
+hbs.registerPartials(__dirname + '/views/partials');
+app.use(express.static(__dirname + '/public'));
+app.use(express.urlencoded({extended:true}));
 
 app.engine('handlebars',exphbs());
 app.set('view engine','handlebars');
 
 app.get('/', (req,res) => {
-    res.render('home');
+    res.render('home.hbs');
+});
+app.get('/home', (req,res) => {
+    res.render('home.hbs');
 });
 
+//Update DB entry
+app.get('/update', (req, res) => {
+    res.render('getupdate.hbs');
+})
+
+app.post('/update', (req, res) =>{
+    //Use ID to create string to get Car from DB
+    var idString = 'car_' + req.body.id;
+    console.log(idString);
+
+    var params = {
+        Key: {
+            "PK":{
+                S: idString
+            },
+            "SK": {
+                S: "car"
+            }
+        },
+        TableName: "senior-project-db-test"
+    }
+
+    dynamodb = new AWS.DynamoDB;
+
+    dynamodb.getItem(params, function(err,data)
+    {
+        if(err) console.log(err);
+        else {
+            
+            console.log(typeof(data.Item.mpg));
+            res.render('update.hbs', {car: data});
+        }
+    })
+})
+
+//Add Car to DB
 app.get('/create',(req,res) => {
-    res.render('create');
+    res.render('create.hbs');
 });
 
 app.post('/create', async (req,res) => {
@@ -33,11 +82,11 @@ app.post('/create', async (req,res) => {
     const bucketName = 'senior-project-image-bucket';
     const folderName = '/car-images';
     const s3 = new AWS.S3();
-    const fileContent = Buffer.from(req.files.picturefile.data, 'binary');
+    const fileContent = Buffer.from(req.files.image.data, 'binary');
 
     const s3params = {
         Bucket: bucketName + folderName,
-        Key: req.files.picturefile.name,
+        Key: req.files.image.name,
         Body: fileContent
     };
 
@@ -49,7 +98,7 @@ app.post('/create', async (req,res) => {
         }
     });
 
-    var s3URL = 'https://' + bucketName + '.s3.amazonaws.com' + folderName + '/' + req.files.picturefile.name;
+    var s3URL = 'https://' + bucketName + '.s3.amazonaws.com' + folderName + '/' + req.files.image.name;
 
     //DB Upload
     const docClient = new AWS.DynamoDB.DocumentClient();
@@ -62,7 +111,7 @@ app.post('/create', async (req,res) => {
         'PK': 'car_' + carID.toString(),
         'SK': 'car',
         'url': s3URL,
-        'name': req.body.name,
+        'name': req.body.model + ' ' + req.body.make,
         'mpg': req.body.mpg,
         'type': req.body.type,
         'color': req.body.color,
@@ -80,6 +129,7 @@ app.post('/create', async (req,res) => {
                 console.log(err);
             }else{
                 console.log('DB updated');
+                res.render('create.hbs');
             }
         })
     }catch(e){
@@ -88,21 +138,19 @@ app.post('/create', async (req,res) => {
 });
 
 //Show Inventory
-app.get('/inventory', (req,res) => {
-    res.redirect('/');
-});
-
 app.post('/inventory', async (req,res) => {
 
+    console.log(req.body);
     //Get Form Data and create a date string
-    var startDS = req.body.startDate + ' ' + req.body.pickupTime;
-    var endDS = req.body.endDate + ' ' + req.body.dropoffTime;
+    var startDS = req.body.pickupDate + ' ' + req.body.pickupTime;
+    var endDS = req.body.dropoffDate + ' ' + req.body.dropoffTime;
 
     //Load date string into Date Object
     var startDate = new Date(startDS);
     var endDate = new Date(endDS);
 
     var availableCars = [];
+    var carData = [];
 
     const docClient = new AWS.DynamoDB.DocumentClient();
 
@@ -139,45 +187,60 @@ app.post('/inventory', async (req,res) => {
             .then(gsiData => {
 
                 //Check if Car is rented, if it is not rented push it to available car
-                if(gsiData.Count == 0)
-                {
+                if (gsiData.Count == 0) {
                     var car = carInDB.PK;
                     availableCars.push(car);
-                }
-                
-                if(gsiData.Count > 0)
+                } 
+                else if (gsiData.Count > 0) 
                 {
-                    gsiData.Items.forEach(reservation =>{
-                        var isAvailable = dateChecker(reservation,startDate,endDate);
+                    gsiData.Items.forEach(reservation => {
+                        var isAvailable = dateChecker(reservation, startDate, endDate);
+                        
                         if(isAvailable)
                         {
                             var car = carInDB.PK;
+                            console.log(car);
                             availableCars.push(car);
                         }
                     });
                 }
-
-                console.log(availableCars);
-            })
+                availableCars.forEach(car => {
+                    let carParams = {
+                        TableName: 'senior-project-db-test',
+                        Key: {
+                            'PK': car,
+                            'SK': 'car'
+                        }
+                    }
+                
+                    docClient.get(carParams).promise() 
+                    .then(availableCarsData => {
+                       carData.push(availableCarsData);
+                    });
+                });
+            });
         })
-    })
-    await console.log(availableCars);
+        return res.render('./inventory.hbs', {cars: carData});
+    });
 });
 
 //Reservation
 app.get('/reservation', (req,res) => {
-    res.render('reservation');
+    res.render('reservation.hbs');
 })
 
 //Register
 app.get('/register', (req,res) => {
-    res.render('register');
+    res.render('register.hbs');
 });
 
-app.post('/register', (req,res) => {
+app.post('/signup', (req,res) => {
     
     //Get Form Data
     var password = req.body.password;
+
+    var doc = require('aws-sdk');
+    var dynamodb = new doc.DynamoDB();
 
     //Dynamo DB Object
     var docClient = new AWS.DynamoDB.DocumentClient();
@@ -190,7 +253,10 @@ app.post('/register', (req,res) => {
                 'SK': 'profile',
                 'password': hash,
                 'name': req.body.name,
-                'address':req.body.address,
+                'address':req.body.streetaddress,
+                'zipcode':req.body.zipcode,
+                'city':req.body.city,
+                'state':req.body.state,
                 'phone': req.body.phone
             };
 
@@ -206,7 +272,7 @@ app.post('/register', (req,res) => {
                 } else {
                     console.log('success');
         
-                    res.render('login',{loginStatus: 'Account Created! Please Login!'})
+                    res.render('login.hbs',{loginStatus: 'Account Created! Please Login!'})
                 }
             });
         } catch(e){
@@ -217,11 +283,50 @@ app.post('/register', (req,res) => {
 });
 
 //Login
-app.get('/login', (req,res) => {
-    res.render('login');
+app.get('/adminslogin', (req,res) => {
+    res.render('adminslogin.hbs');
 })
 
-app.post('/login', (req,res) => {
+app.post('/adminscheck', (req,res) => {
+
+    //Get Form Data
+    var user = req.body.email;
+    var pass = req.body.password;
+
+    //DynamoDB Object
+    var docClient = new AWS.DynamoDB.DocumentClient();
+    var table = 'senior-project-db-test';
+
+    docClient.get({
+        TableName: table,
+        Key:{
+            'PK': user,
+            'SK': 'admin'
+        }
+    }).promise()
+    .then(data => {
+        if(Object.entries(data).length === 0)
+        {
+            res.render('adminslogin.hbs', {loginStatus: 'Incorrect Username/Password'});
+        }else{
+            
+            bcrypt.compare(password,data.Item.password, function(err, response){
+                if(response)
+                {
+                    res.redirect('/adminsinventory.hbs');
+                }else{
+                    res.render('adminslogin.hbs', {loginStatus: 'Incorrect Username/Password'});
+                }
+            })
+        }
+    })
+});
+
+app.get('/login', (req,res) => {
+    res.render('login.hbs');
+})
+
+app.post('/loginCheck', (req,res) => {
 
     //Get Form Data
     var username = req.body.username;
@@ -234,7 +339,7 @@ app.post('/login', (req,res) => {
     docClient.get({
         TableName: table,
         Key:{
-            'PK': req.body.username,
+            'PK': username,
             'SK': 'profile'
         }
 
@@ -243,7 +348,7 @@ app.post('/login', (req,res) => {
 
         //Check if object is empty
         if(Object.entries(data).length === 0){
-            res.render('login', {loginStatus: 'Incorrect Username/Password'});
+            res.render('login.hbs', {loginStatus: 'Incorrect Username/Password'});
         }else{
 
             //Compare password to hashed password
@@ -252,7 +357,7 @@ app.post('/login', (req,res) => {
                 {
                     res.redirect('/');
                 }else{
-                    res.render('login', {loginStatus: 'Incorrect Username/Password'});
+                    res.render('login.hbs', {loginStatus: 'Incorrect Username/Password'});
                 }
             })
         }
@@ -261,4 +366,5 @@ app.post('/login', (req,res) => {
 
 app.listen(3000, () => {
     console.log('Listening on port 3000!');
+    console.log('http://localhost:3000/home');
 });

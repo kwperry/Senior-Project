@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admins Inventory</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+  <!-- style="background-color: #111"> -->
+  <!--This is the top navbar-->
+  <div>
+    <!-- Navigation Bar -->
+    <nav class="w3-bar w3-white w3-large">
+      <a href="#" class="w3-bar-item w3-button w3-orange w3-mobile"><i class="fa fa-car w3-margin-right"></i>NEIT Car
+        Rentals</a>
+      <a href="#" class="w3-bar-item w3-button w3-mobile">Reservations</a>
+      <a href="login" class="w3-bar-item w3-button w3-mobile">Login</a>
+      <a href="registration" class="w3-bar-item w3-button w3-mobile">Signup</a>
+      <a href="create" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile"><i class="material-icons" style="font-size:30px;color:blue">add_circle</i>Create</a>
+    </nav>
+  </div>
+  <div>
+    <div class="w3-quarter w3-container w3-card w3-white w3-margin-top w3-margin-left" style="padding: 2%">
+      <h2 style="text-align: center;"># Rentals Found</h2>
+      <hr>
+      <div class="w3-margin-top">
+        <h4>Car Types</h4>
+        <hr>
+        <input type="checkbox" class="group1" checked />
+        <span style="font-size: 16px;">All Cars</span>
+        <br>
+        <input type="checkbox" class="group1" />
+        <span style="font-size: 16px;">Compact</span>
+        <br>
+        <input type="checkbox" class="group1" />
+        <span style="font-size: 16px;">SUV</span>
+        <br>
+        <input type="checkbox" class="group1" />
+        <span style="font-size: 16px;">Van</span>
+        <br>
+        <input type="checkbox" class="group1" />
+        <span style="font-size: 16px;">Truck</span>
+        <br>
+        <input type="checkbox" class="group1" />
+        <span style="font-size: 16px;">Luxury</span>
+      </div>
+      <div class="w3-margin-top">
+        <!--Sort by price-->
+        <h4>Price</h4>
+        <hr>
+        <input type="checkbox" class="group1" />
+        <span style="font-size: 16px;"><i class='fa fa-dollar'></i></span>
+        <div class="w3-right">$0-$30/day</div>
+        <br>
+        <input type="checkbox" class="group1" />
+        <span style="font-size: 16px;"><i class='fa fa-dollar'></i><i class='fa fa-dollar'></i></span>
+        <div class="w3-right w3-left-align">$30-$60/day</div>
+        <br>
+        <input type="checkbox" class="group1" />
+        <span style="font-size: 16px;"><i class='fa fa-dollar'></i><i class='fa fa-dollar'></i><i
+            class='fa fa-dollar'></i></span>
+        <div class="w3-right w3-left-align">$60-$90/day</div>
+        <br>
+        <input type="checkbox" class="group1" />
+        <span style="font-size: 16px;"><i class='fa fa-dollar'></i><i class='fa fa-dollar'></i><i
+            class='fa fa-dollar'></i><i class='fa fa-dollar'></i></span>
+        <div class="w3-right w3-left-align">$90-$120/day</div>
+      </div>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      $('input[type="checkbox"]').on('change', function () {
+        $(this).siblings('input[type="checkbox"]').not(this).prop('checked', false);
+      });
+    </script>
+    <!--This is the right panel, holds inventory and additional ways to sort-->
+    <div class="w3-twothird">
+      <!--DUMMY DATA --FOR DESIGN PURPOSES-->
+      <script>
+      var data = [{
+        "id":0,
+        "manufacturer": "Porsche",
+        "model": "911",
+        "ppday": 19,
+        "wiki": "http://en.wikipedia.org/wiki/Porsche_997",
+        "type": "Compact",
+        "mpg": "35/mpg",
+        "passengers": 4,
+        "doors": 2,
+        "storage": 1,
+        "img": "https://cnet3.cbsistatic.com/img/jDrQMFPP_zbP_ucNrU4PblatNHo=/1200x675/2020/07/01/f9fd026c-cf70-4170-a1c6-53521c35a21a/2020-porsche-911-carrera-s-manual-001.jpg"
+      }, {
+        "id":1,
+        "manufacturer": "Nissan",
+        "model": "Altima",
+        "ppday": 33,
+        "wiki": "http://en.wikipedia.org/wiki/Nissan_altima",
+        "type": "Luxury",
+        "mpg": "22/mpg",
+        "passengers": 4,
+        "doors": 2,
+        "storage": 1,
+        "img": "https://www.motortrend.com/uploads/sites/5/2018/03/2019-Nissan-Altima-front-three-quarter-01.jpg?fit=around%7C875:492"
+      }, {
+        "id":2,
+        "manufacturer": "BMW",
+        "model": "M3",
+        "ppday": 25,
+        "wiki": "http://en.wikipedia.org/wiki/Bmw_m3",
+        "type": "Sadan",
+        "mpg": "28/mpg",
+        "passengers": 5,
+        "doors": 4,
+        "storage": 2,
+        "img": "https://www.autocar.co.uk/sites/autocar.co.uk/files/images/car-reviews/first-drives/legacy/bmw-6erubg-417.jpg"
+      }, {
+        "id":3,
+        "manufacturer": "Audi",
+        "model": "S5",
+        "ppday": 24,
+        "wiki": "http://en.wikipedia.org/wiki/Audi_S5#Audi_S5",
+        "type": "Sadan",
+        "mpg": "27/mpg",
+        "passengers": 5,
+        "doors": 4,
+        "storage": 2,
+        "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/2018_Audi_S5_TFSi_Quattro_Automatic_3.0_Front.jpg/1200px-2018_Audi_S5_TFSi_Quattro_Automatic_3.0_Front.jpg"
+      }, {
+        "id":4,
+        "manufacturer": "Audi",
+        "model": "TT",
+        "ppday": 23,
+        "wiki": "http://en.wikipedia.org/wiki/Audi_TT",
+        "type": "Compact",
+        "mpg": "33/mpg",
+        "passengers": 2,
+        "doors": 2,
+        "storage": 1,
+        "img": "https://media.ed.edmunds-media.com/audi/tt/2012/oem/2012_audi_tt_coupe_20t-premium-plus-quattro_fq_oem_2_1600.jpg"
+      }];
+
+        myInventory(data);
+
+        function myInventory(myObject) {
+          var out = "";
+          var i;
+
+          for (i = 0; i < myObject.length; i++) {
+            document.write(
+              "<div class='w3-card w3-white w3-container w3-margin-top w3-margin-left w3-margin-right' style='width:100%'>" +
+              "<section class='w3-row'>" +
+              "<div class='w3-quarter w3-margin-top'>" +
+              "<h4>" + myObject[i].type + "</h4>" +
+              "<hr>" +
+              "<img style='width:200px;height:125px;' class='w3-margin-bottom' src='" + myObject[i].img + "'>" +
+              "</div>" +
+              "<div class='w3-quarter w3-margin-top'>" +
+              "<h4>Specification</h4>" +
+              "<hr>" +
+              "&nbsp" + myObject[i].manufacturer + " - " + myObject[i].model +
+              "<br>" +
+              "&nbsp" + myObject[i].mpg +
+              "<br>" +
+              "<i class='material-icons'>person</i>&nbsp" + myObject[i].passengers + "&nbsp" +
+              "<i class='fa fa-suitcase' style='font-size:24px'></i>&nbsp" + myObject[i].storage + "&nbsp" +
+              "<img style='width:30px;height:30px;margin-top:-20px;' src='https://static.thenounproject.com/png/319305-200.png' alt='door icon'>&nbsp" +
+              myObject[i].doors + "&nbsp" +
+              "</div>" +
+              "<div class='w3-quarter w3-margin-top'>" +
+              "<h4>Information</h4>" +
+              "<hr>" +
+              "<i class='fas fa-tachometer-alt'></i>&nbspUnlimited Mileage" +
+              "<br>" +
+              "<i class='fas fa-money-bill-alt'></i>&nbspPay at Pick-up" +
+              "<br>" +
+              "<i class='fas fa-ban'></i>&nbspFree Cancellation" +
+              "<br>" +
+              "<h3><i class='fa fa-dollar'></i>" + myObject[i].ppday +
+              "<daytag style='font-size:10px'>/day</daytag></h3>" +
+              "</div>" +
+              "<div class='w3-quarter w3-margin-top w3-center'>" +
+              "<form method='post' action='/checkout'>" +
+              "<h4>Maintance<h4>" +
+              "<hr>" +
+              "<div class='w3-padding'>" + //daytag is a created tag to add "/day" next the cost of rental 
+              //"<h3><i class='fa fa-dollar'></i>"+myObject[i].ppday + "<daytag style='font-size:10px'>/day</daytag></h3>" +
+              "<a href='update' class='w3-margin-bottom w3-button w3-green w3-hover-green w3-round'>Update</a>" +
+              "<br>" +
+              "<a href='' class='delete w3-button w3-red w3-hover-red w3-round' data-confirm='Are you sure to delete this item?'>Delete</a>"+
+              "</form>" +
+              "</div>" +
+              "</div>" +
+              "</section>" +
+              "</div>")
+          }
+var deleteLinks = document.querySelectorAll('.delete');
+
+for (var i = 0; i < deleteLinks.length; i++) {
+  deleteLinks[i].addEventListener('click', function(event) {
+      event.preventDefault();
+
+      var choice = confirm(this.getAttribute('data-confirm'));
+
+      if (choice) {
+        window.location.href = this.getAttribute('href');
+      }
+  });
+}
+        }
+      </script>
+    </div>
+  </div>
+</body>
+
+</html>
+
+
+
+
+              {{!-- "<a href='' onclick='return confirm('Are you sure you want to delete this item') class='w3-button w3-red w3-hover-red w3-round'>Delete</a>"  --}}

@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechProphet Login</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <title>Confirmation</title>
-</head>
-<style>
-    .login-clean form .btn-primary:active,
+    <!-- <link rel="stylesheet" href="static/css/styles.min.css"> -->
+    <style>
+        .login-clean form .btn-primary:active,
 .register-photo form .btn-primary:active {
     transform: translateY(1px)
 }
@@ -403,40 +400,61 @@
     opacity: .9;
     text-decoration: none
 }
-</style>
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+    </style>
+</head>
+
 <body>
     <div>
         <!-- Navigation Bar -->
         <nav class="w3-bar w3-white w3-large">
-            <a href="{{url_for('home')}}" class="w3-bar-item w3-button w3-orange w3-mobile"><i
+            <a href="adminslogin" class="w3-bar-item w3-button w3-orange w3-mobile"><i
                     class="fa fa-car w3-margin-right"></i>NEIT Car
                 Rentals</a>
-            <a href="#" class="w3-bar-item w3-button w3-mobile">Reservations</a>
-            <a href="#" class="w3-bar-item w3-button w3-mobile">Login</a>
-            <a href="#" class="w3-bar-item w3-button w3-mobile">Signup</a>
+            <a href="home" class="w3-bar-item w3-button w3-mobile">Home</a>
+            <a href="login" class="w3-bar-item w3-button w3-mobile">Login</a>
+            <a href="register" class="w3-bar-item w3-button w3-mobile">Signup</a>
             <a href="#" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Contact Us</a>
         </nav>
     </div>
-    <div class="form-container w3-margin-top w3-padding">
-        <div class="w3-margin-top w3-padding">
-            <div style="width: auto;height: 400px;">
-                <div style="text-align: center;" >
-                    <h1 class="w3-margin-top">Thank You</h1>
-                    <br>
-                    <i class='fas fa-check-circle' style='font-size:72px;color:green'></i>
-                    <br>
-                    <h2 class="w3-margin-top">Confirmation # 123456789</h2>
-                    <br>
-                    <a class="w3-button w3-blue w3-round-large" href="">Return Home</a>
-                    <br>
-                    <br>
-                    <a class="w3-button w3-red w3-round-large" href="">Cancel this rental</a>
-                </div>
+    <div class="login-clean" style="margin-top: -75px;">
+            <div class="form-container">
+                <form class="example" action="/action_page.php">
+                    <input type="text" placeholder="Search.." name="search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
             </div>
-        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
 </body>
-</html>

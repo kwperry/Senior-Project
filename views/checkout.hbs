@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rentals Checkout</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <!-- style="background-color: #111"> -->
+    <!--This is the top navbar-->
+    <div>
+        <!-- Navigation Bar -->
+        <nav class="w3-bar w3-white w3-large">
+            <a href="home" class="w3-bar-item w3-button w3-orange w3-mobile"><i class="fa fa-car w3-margin-right"></i>NEIT
+                Car
+                Rentals</a>
+            <a href="reservation" class="w3-bar-item w3-button w3-mobile">Reservations</a>
+            <a href="login" class="w3-bar-item w3-button w3-mobile">Login</a>
+            <a href="register" class="w3-bar-item w3-button w3-mobile">Signup</a>
+            <a href="#" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Contact Us</a>
+        </nav>
+    </div>
+        <!--Detail section-->
+        <div class="w3-card w3-white w3-margin-top w3-margin-left w3-margin-right w3-padding">
+            <!--This is the top panel, -->
+            <a href="inventory">return to results</a>
+            <br>
+            <p>About your car rental<br>Sat 01/16/2021 at 12:00pm to Sun 01/17/2021 at 12:00pm</p>
+        </div>
+            <!--This is the left panel, sort by car type-->
+            <section>
+            <div class="w3-container w3-card w3-white w3-margin-top w3-margin-left w3-margin-right" style="padding: 2%">
+                <div class="w3-twothird">
+                <script>
+      var data = [{
+        "id":0,
+        "manufacturer": "Porsche",
+        "model": "911",
+        "ppday": 19,
+        "wiki": "http://en.wikipedia.org/wiki/Porsche_997",
+        "type": "Compact",
+        "mpg": "35/mpg",
+        "passengers": 4,
+        "doors": 2,
+        "storage": 1,
+        "img": "https://cnet3.cbsistatic.com/img/jDrQMFPP_zbP_ucNrU4PblatNHo=/1200x675/2020/07/01/f9fd026c-cf70-4170-a1c6-53521c35a21a/2020-porsche-911-carrera-s-manual-001.jpg"
+      }];
+                    myInventory(data);
+
+                    function myInventory(myObject) {
+                    var out = "";
+                    var i;
+
+                    for (i = 0; i < myObject.length; i++) {
+                        document.write(
+                        "<div class='w3-white w3-container w3-margin-top w3-margin-left w3-margin-right' style='width:100%'>" +
+                            "<section class='w3-row'>"+
+                            "<div class='w3-quarter w3-margin-top'>" +
+                                "<h4>" + myObject[i].type + "</h4>" +
+                                "<hr>" + 
+                                "<img style='width:200px;height:125px;' class='w3-margin-bottom' src='" + myObject[i].img + "'>" +
+                            "</div>" + 
+                            "<div class='w3-quarter w3-margin-top'>" +
+                                "<h4>Specification</h4>" +
+                                "<hr>" + 
+                                "&nbsp" +myObject[i].manufacturer + " - " + myObject[i].model + 
+                                "<br>" +
+                                "&nbsp" + myObject[i].mpg +
+                                "<br>" +
+                                "<i class='material-icons'>person</i>&nbsp" + myObject[i].passengers + "&nbsp" +
+                                "<i class='fa fa-suitcase' style='font-size:24px'></i>&nbsp" + myObject[i].storage + "&nbsp" +
+                                "<img style='width:30px;height:30px;margin-top:-20px;' src='https://static.thenounproject.com/png/319305-200.png' alt='door icon'>&nbsp" + myObject[i].doors + "&nbsp" +
+                            "</div>" +
+                            "<div class='w3-quarter w3-margin-top'>" +
+                                "<h4>Information</h4>" +
+                                "<hr>" + 
+                                "<i class='fas fa-tachometer-alt'></i>&nbspUnlimited Mileage" +
+                                "<br>" + 
+                                "<i class='fas fa-money-bill-alt'></i>&nbspPay at Pick-up" +
+                                "<br>" +
+                                "<i class='fas fa-ban'></i>&nbspFree Cancellation" +
+                            "</div>" +
+                            "<div class='w3-quarter w3-margin-top w3-center'>" +   
+                                "<h4>Rent Today<h4>" +
+                                "<hr>" + 
+                                "<div class='w3-border w3-border-orange w3-padding'>" +  //daytag is a created tag to add "/day" next the cost of rental 
+                                "<h3><i class='fa fa-dollar'></i>"+myObject[i].ppday + "<daytag style='font-size:10px'>/day</daytag></h3>" +
+                                "Total&nbsp" + "<i class='fa fa-dollar'></i>"+ (myObject[i].ppday + (myObject[i].ppday * 0.07)) + "<daytag style='font-size:10px'>/day</daytag>" +
+                                "</div>" + 
+                            "</div>" +
+                            "</section>" +
+                        "</div>"
+                        );
+                    }
+                }
+            </script>    
+            </div> 
+            <div class='w3-quarter w3-margin-top w3-padding' style='float: right; text-align: center;'>
+                <h4>Summary of Charges</h4>
+                <hr>
+                <script>
+                    var data = [{
+        "id":0,
+        "manufacturer": "Porsche",
+        "model": "911",
+        "ppday": 19,
+        "wiki": "http://en.wikipedia.org/wiki/Porsche_997",
+        "type": "Compact",
+        "mpg": "35/mpg",
+        "passengers": 4,
+        "doors": 2,
+        "storage": 1,
+        "img": "https://cnet3.cbsistatic.com/img/jDrQMFPP_zbP_ucNrU4PblatNHo=/1200x675/2020/07/01/f9fd026c-cf70-4170-a1c6-53521c35a21a/2020-porsche-911-carrera-s-manual-001.jpg"
+      }];
+                    myInventory(data);
+
+                    function myInventory(myObject) {
+                    var out = "";
+                    var i;
+
+                    for (i = 0; i < myObject.length; i++) {
+                        document.write(
+                        "<div class='w3-row'>" +
+                            "<p class='w3-left w3-margin-top'>Daily Rate</p>" +
+                            "<p class='w3-right w3-margin-top'>&nbsp<i class='fa fa-dollar'></i>"+(myObject[i].ppday + (myObject[i].ppday * 0.07)) + "</p>" +
+                        "</div>" +
+                        "<div class='w3-row'>" +
+                            "<p class='w3-left'>1 Day</p>" +
+                            "<p class='w3-right'>&nbsp<i class='fa fa-dollar'></i>"+ parseFloat(myObject[i].ppday).toFixed(2)  + "</p>" +
+                        "</div>" +
+                        "<div class='w3-row'>" +
+                            "<p class='w3-left'>Taxes & Fees</p>" +
+                            "<p class='w3-right'>&nbsp<i class='fa fa-dollar'></i>"+ (myObject[i].ppday * 0.07) + "</p>" +
+                        "</div>" +
+                        "<div class='w3-row'>" +
+                            "<p class='w3-left'>Total Cost</p>" +
+                            "<p class='w3-right'>&nbsp<i class='fa fa-dollar'></i>"+ (myObject[i].ppday + (myObject[i].ppday * 0.07)) + "</p>"+
+                        "</div>" +
+                        "<div class='w3-row'>" +
+                            "<p class='w3-left'>Due Now</p>" +
+                            "<p class='w3-right'>&nbsp<i class='fa fa-dollar'></i>"+ parseFloat(myObject[i].due).toFixed(2) + "</p>" +
+                        "</div>" +
+                        "<div class='w3-row'>" +
+                            "<p class='w3-left'>Due at Pick-up</p>" +
+                            "<p class='w3-right'>&nbsp<i class='fa fa-dollar'></i>"+ (myObject[i].ppday + (myObject[i].ppday * 0.07)) + "</p>")
+                        "</div>"
+                    }
+                }
+                </script>
+            </div>
+        </div>
+    </section>
+        <div class="w3-container w3-card w3-white w3-margin-top w3-margin-left w3-margin-right" style="padding: 2%">
+            <div class="w3-twothird">
+                <div class="w3-margin-top w3-margin-left w3-padding">
+                    <h4 class="w3-center">Add Collision Protection</h4>
+                    <hr>
+                    <form class="w3-left" action="" name="ins">
+                        <p>Choose your coverage:</p>
+                        <input type="radio" id="yes" name="insure" value="15" onclick="calculate()">
+                        <label for="yes">yes, protect my rental($15.00 added to total)</label>
+                        <br>
+                        <input type="radio" id="no" name="insure" value="0" onclick="calculate()">
+                        <label for="no">No, I decline ($0.00)</label>
+                      </form>
+                </div>
+            </div>
+            <div class='w3-quarter w3-margin-top w3-padding' style='float: right; text-align: center;'>
+                <h4>Summary of Charges</h4>
+                <hr>
+                <script>
+                    var data = [{
+                    "id":0,
+                    "manufacturer": "Porsche",
+                    "model": "911",
+                    "ppday": 19,
+                    "wiki": "http://en.wikipedia.org/wiki/Porsche_997",
+                    "type": "Compact",
+                    "mpg": "35/mpg",
+                    "passengers": 4,
+                    "doors": 2,
+                    "storage": 1,
+                    "img": "https://cnet3.cbsistatic.com/img/jDrQMFPP_zbP_ucNrU4PblatNHo=/1200x675/2020/07/01/f9fd026c-cf70-4170-a1c6-53521c35a21a/2020-porsche-911-carrera-s-manual-001.jpg"
+                }];
+                    myInventory(data);
+
+                    function myInventory(myObject) {
+                    var out = "";
+                    var i;
+
+                    for (i = 0; i < myObject.length; i++) {
+                        document.write(
+                        "<form method='get' action='/confirmation'>"+
+                        "<div class='w3-row'>" +
+                            "<p class='w3-left w3-margin-top'>Daily Rate</p>" +
+                            "<p class='w3-right w3-margin-top'>&nbsp<i class='fa fa-dollar'></i>"+(myObject[i].ppday + (myObject[i].ppday * 0.07)) + "</p>" +
+                        "</div>" +
+                        "<div class='w3-row'>" +
+                            "<p class='w3-left'>1 Day</p>" +                        //calculate() goes below
+                            "<p class='w3-right'>&nbsp<i class='fa fa-dollar'></i>"+ calculate() + "</p>" +
+                        "</div>" +
+                        "<div class='w3-row'>" +
+                            "<p class='w3-left'>Taxes & Fees</p>" +
+                            "<p class='w3-right'>&nbsp<i class='fa fa-dollar'></i>"+ (myObject[i].ppday * 0.07) + "</p>" +
+                        "</div>" +
+                        "<div class='w3-row'>" +
+                            "<p class='w3-left'>Total Cost</p>" +
+                            "<p class='w3-right'>&nbsp<i class='fa fa-dollar'></i>"+ (myObject[i].ppday + (myObject[i].ppday * 0.07)) + "</p>"+
+                        "</div>" +
+                        "<div class='w3-row'>" +
+                            "<p class='w3-left'>Due Now</p>" +
+                            "<p class='w3-right'>&nbsp<i class='fa fa-dollar'></i>"+ parseFloat(myObject[i].due).toFixed(2) + "</p>" +
+                        "</div>" +
+                        "<div class='w3-row'>" +
+                            "<p class='w3-left'>Due at Pick-up</p>" +
+                            "<p class='w3-right'>&nbsp<i class='fa fa-dollar'></i>"+ (myObject[i].ppday + (myObject[i].ppday * 0.07)) + "</p>") +
+                        "</div>" +
+                        "<br>" +
+                        "<div>" + 
+                        "<a class='w3-button w3-blue w3-round-large' href=''>Submit</a>" +
+                        "<br>"
+                        "</div>" +
+                        "</form>" 
+                    }
+                }
+                function perday(){
+                        console.log(parseFloat(data[0].ppday).toFixed(2))
+                        return parseFloat(data[0].ppday).toFixed(2)
+                    }
+
+                function calculate(){
+                    var ins = document.forms.ins
+                    var radio = ins.elements.insure
+                    var price = radio.value
+                   // console.log(parseFloat(price).toFixed(2))
+                    //return parseFloat(price).toFixed(2)
+                    console.log(parseFloat(price).toFixed(2) + perday())
+                }
+                </script>
+            </div>
+        </div>        
+    </body>
+
+</html>
